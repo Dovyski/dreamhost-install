@@ -15,13 +15,10 @@ source_bash_config(){
 
 echo -e "\e[1;33m Prepare .bash_profile \e[0m"
 
+cat .bash_profile > ~/.bash_profile
+
 add_to_bash_config 'export PHP_BIN="$PHP_BIN"'
-add_to_bash_config 'alias ls="ls --color=auto"'
-add_to_bash_config 'alias wget="wget -c"'
-add_to_bash_config 'alias ll="ls -la"'
 add_to_bash_config 'alias php="php-8.0"'
-add_to_bash_config 'alias ..="cd .."'
-add_to_bash_config 'alias grep="grep --color=auto"'
 
 source_bash_config
 
