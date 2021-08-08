@@ -2,6 +2,7 @@
 
 PHP_BIN="php-8.0"
 NODE_VERSION="v14.0.0"
+DOTFILES_DOWNLOAD_PATH="/tmp/dovy-dotfiles"
 
 add_to_bash_config(){
   echo $1 >> ~/.bashrc
@@ -15,7 +16,8 @@ source_bash_config(){
 
 echo -e "\e[1;33m Prepare .bash_profile \e[0m"
 
-cat .bash_profile > ~/.bash_profile
+git clone https://github.com/Dovyski/dotfiles $DOTFILES_DOWNLOAD_PATH
+cat $DOTFILES_DOWNLOAD_PATH/.bash_profile > ~/.bash_profile
 
 add_to_bash_config 'export PHP_BIN="$PHP_BIN"'
 add_to_bash_config 'alias php="php-8.0"'
