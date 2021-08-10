@@ -2,7 +2,7 @@
 
 PHP_BIN="php-8.0"
 NODE_VERSION="v14.0.0"
-DOTFILES_DOWNLOAD_PATH="/tmp/dovy-dotfiles"
+DOTFILES_DOWNLOAD_PATH="/tmp/dovy-$(cat /dev/urandom | tr -dc 'a-z0-9' | head -c 32)"
 
 function add_to_bash_config() {
   echo $1 >> ~/.bash_profile
@@ -10,7 +10,6 @@ function add_to_bash_config() {
 
 echo -e "\e[1;33mPrepare .bash_profile \e[0m"
 
-rm -rf $DOTFILES_DOWNLOAD_PATH
 git clone https://github.com/Dovyski/dotfiles $DOTFILES_DOWNLOAD_PATH
 cat $DOTFILES_DOWNLOAD_PATH/.bash_profile > ~/.bash_profile
 
