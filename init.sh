@@ -4,13 +4,13 @@ PHP_BIN="php-8.0"
 NODE_VERSION="v14.0.0"
 DOTFILES_DOWNLOAD_PATH="/tmp/dovy-dotfiles"
 
-add_to_bash_config() {
-  echo $1 >> ~/.bashrc
+function add_to_bash_config() {
   echo $1 >> ~/.bash_profile
 }
 
 echo -e "\e[1;33mPrepare .bash_profile \e[0m"
 
+rm -rf $DOTFILES_DOWNLOAD_PATH
 git clone https://github.com/Dovyski/dotfiles $DOTFILES_DOWNLOAD_PATH
 cat $DOTFILES_DOWNLOAD_PATH/.bash_profile > ~/.bash_profile
 
@@ -23,18 +23,18 @@ echo -e "\e[1;33mInstalling composer \e[0m"
 cd ~
 mkdir -p ~/.php/composer && cd ~/.php/composer
 curl -sS https://getcomposer.org/installer | $PHP_BIN
-add_to_bash_config 'export PATH=/home/$USER/.php/composer:$PATH'
+add_to_bash_config "export PATH=/home/$USER/.php/composer:$PATH"
 source ~/.bash_profile
 mv ~/.php/composer/composer.phar ~/.php/composer/composer
 
 echo -e "\e[1;33mInstalling node/npm \e[0m"
 cd ~
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-add_to_bash_config 'export NVM_DIR="$HOME/.nvm"'
+add_to_bash_config "export NVM_DIR=$HOME/.nvm"
 add_to_bash_config '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm'
 add_to_bash_config '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion'
 
-source ~/.bash_profile
+source ~/.bash_profile && source ~/.bashrc
 
 setfattr -n user.pax.flags -v "mr" $NVM_DIR/nvm.sh
 
