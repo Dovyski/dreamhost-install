@@ -6,7 +6,7 @@ Script to install all dependencies to run web-apps in a Dreamhost shared host.
 SSH into server, then run:
 
 ```shell
-cd ~ && git clone https://github.com/dreamhost-install && cd dreamhost-install
+cd ~ && git clone https://github.com/Dovyski/dreamhost-install && cd dreamhost-install
 ```
 
 ```shell
